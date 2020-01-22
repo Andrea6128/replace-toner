@@ -73,8 +73,8 @@ def subscribe(request):
             Barva toneru: """ + str(viewsTonerColor) + """\n
             Požadavek vygenerován: """ + str(viewsRequestDate)
 
-        from_email = 'replace-toner@prf.cuni.cz'
-        recepient = ['iam.andreapetriku@gmail.com']
+        from_email = 'replace-toner@yourdomain.com'
+        recepient = ['--enter--your--email--address--here--']
         send_mail(subject, message, from_email, recepient, fail_silently = False)
         return render(request, 'printers/success.html', {'viewsRoomNumber': viewsRoomNumber})
     else:

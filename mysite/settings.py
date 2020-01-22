@@ -123,17 +123,9 @@ STATIC_URL = '/static/'
 # own
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
-#own work
-# EMAIL_HOST = 'mail.prf.cuni.cz'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'petrik'
-# EMAIL_HOST_PASSWORD = 'Heroes1'
-# EMAIL_USE_TLS = True
-
 #own home
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_USER = '--YOUR--SENDGRID--APIKEY--'
+EMAIL_HOST_PASSWORD = '--YOUR--PASSWORD--'
 EMAIL_USE_TLS = True
