@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>ReplaceToner</title>
+  </head>
+  <body>
+    <div class="page-header">
+      <a href="{% url 'main_view' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+      <h1>ReplaceToner</h1>
+      <h1><a href="">Požadavek na výměnu toneru v tiskárně</a></h1>
+    </div>
+
+    <div>
+      <p>
+        <h2>Prosím, zvolte následující údaje a stiskněte tlačítko Odeslat požadavek.</h2>
+      </p>
+
+      <form method="POST" action="{% url 'subscribe' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit-btn" class="save btn btn-default" value="Odeslat požadavek">
+      </form>
+
+    </div>
+  </body>
+  <footer>
+    <p>
+      © 2020 Andrea Petříků | Powered by Python 3.8.1 and Django 3.0.2 | Version 0.1
+    </p>
+  </footer>
+</html>
