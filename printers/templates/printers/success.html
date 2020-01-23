@@ -1,15 +1,35 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <title>Success</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/printers.css' %}">
   </head>
+
+  <main>
+    <div class="page-header">
+      <a href="{% url 'main_view' %}" class="top-menu"></a>
+      <h1><strong><a href="">replaceTONER</a></strong></h1>
+      <h3>Požadavek na výměnu toneru v tiskárně</h3>
+    </div>
+  </main>
+
   <body>
-    <h1>Email sent successfully!</h1> <!--  to {{ recepient }} ! -->
-    <h2>Požadavek úspěšně odeslán.</h2>
-    <p>
-      Děkujeme za použití aplikace ReplaceToner :)
+    <div class="main-content">
+      <h2>Požadavek na výměnu toneru byl úspěšně odeslán.</h2>
       <br>
-      Toner do místnosti <strong>{{ viewsRoomNumber }}</strong> vám doneseme v nejbližsím možném termínu.
-    </p>
+      <h4>Toner <strong>{{ viewsTonerColor }}</strong> do místnosti <strong>{{ viewsRoomNumber }}</strong> pro tiskárnu <strong>{{ viewsPrinterName }}</strong> vám doneseme v nejbližsím možném termínu.</h4>
+      <br>
+      <h5>Děkujeme za použití aplikace ReplaceToner.</h5>
+      <br>
+    </div>
   </body>
+
+  <footer>
+    <h5><a href="">ReplaceToner</a> © 2020 Andrea Petříků | Powered by <a href="https://www.python.org/">Python 3.8.1</a> and <a href="https://en.wikipedia.org/wiki/Django_(web_framework)" class="external_link" id="link_to_wiki_page">Django 3.0.2</a></h5>
+  </footer>
 </html>

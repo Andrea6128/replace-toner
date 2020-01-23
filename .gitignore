@@ -4,4 +4,4 @@ myvenv*
 db.sqlite3
 .DS_Store
 heslo_admin.txt
-*.png
+todo.txt

@@ -4,12 +4,16 @@ from django.utils import timezone
 
 # Create your models here.
 class Main(models.Model):
-    # generates room numbers to choose from:
-    fillRooms = []
-    generateRooms = range(1, 418)
-    for room in generateRooms:
-        fillRooms.append((room, (str(room))))
-        ROOMS = fillRooms
+    # makes tuples from room list
+    tupleRooms = []
+    normalRooms = [1,2,3,4,5,6,7,8,9,10,11,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,
+            102,104,105,106,107,108,109,110,111,112,113,114,115,116,118,119,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,
+            201,202,203,204,205,206,207,208,209,210,211,212,215,216,217,218,219,221,222,223,224,226,227,228,229,290,232,233,234,235,236,237,238,239,240,241,242,
+            301,306,307,308,309,310,311,312,313,314,315,316,317,318,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,349,
+            406,407,410,411]
+    for room in normalRooms:
+        tupleRooms.append((room, (str(room))))
+        ROOMS = tupleRooms
 
     PRINTER = [
     ('BIXOLON SRP-350plusIII', 'BIXOLON SRP-350plusIII'),
@@ -22,11 +26,11 @@ class Main(models.Model):
     ('EPSON WF-C5710', 'EPSON WF-C5710'),
     ('EPSON WP-M4095', 'EPSON WP-M4095'),
     ('KONICA MINOLTA bizhub C224e', 'KONICA MINOLTA bizhub C224e'),
-    ('Kyocera ECOSYS M2040dn', 'Kyocera Ecosys M2040dn'),
+    ('Kyocera ECOSYS M2040dn', 'Kyocera ECOSYS M2040dn'),
     ('Kyocera ECOSYS M6235cidn', 'Kyocera ECOSYS M6235cidn'),
     ('Kyocera ECOSYS M6526cdn', 'Kyocera ECOSYS M6526cdn'),
     ('Kyocera ECOSYS M6526cidn', 'Kyocera ECOSYS M6526cidn'),
-    ('Kyocera ECOSYS M6526dn', 'Kyocera ECOSYE M6526dn'),
+    ('Kyocera ECOSYS M6526dn', 'Kyocera ECOSYS M6526dn'),
     ('Kyocera ECOSYS P6035cdn', 'Kyocera ECOSYS P6035cdn'),
     ('Kyocera M2035dn', 'Kyocera M2035dn'),
     ('Kyocera TASKalfa 3252ci', 'Kyocera TASKalfa 3252ci'),
@@ -42,15 +46,15 @@ class Main(models.Model):
     ]
 
     TONER_COLOR = [
-    ('C', 'Cyan'),
-    ('M', 'Magenta'),
-    ('Y', 'Yellow'),
-    ('K', 'Black')
+    ('Cyan', 'Cyan'),
+    ('Magenta', 'Magenta'),
+    ('Yellow', 'Yellow'),
+    ('Black', 'Black')
     ]
 
     roomNumber = models.DecimalField(max_digits=3, decimal_places=0, verbose_name=('Číslo místnosti'), choices=ROOMS)
     printerName = models.CharField(max_length=30, verbose_name=('Typ tiskárny'), choices=PRINTER)
-    tonerColor = models.CharField(max_length=1, verbose_name=('Barva toneru'), choices=TONER_COLOR, default="K") # CMYK
+    tonerColor = models.CharField(max_length=7, verbose_name=('Barva toneru'), choices=TONER_COLOR, default="Black") # CMYK
 
     # this doesn't need to be here:
     def __str__(self):

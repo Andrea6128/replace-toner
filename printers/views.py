@@ -4,7 +4,6 @@ from .models import Main
 from .forms import MainForm
 from django.core.mail import send_mail
 from . import forms # new
-# from django.views.generic import UpdateView # new
 from django.http import HttpResponse
 
 
@@ -48,7 +47,7 @@ def subscribe(request):
     'RICOH MP 2501': ['Laser', 'Black&White', '841925 (válec)'],
     'RICOH SP 3600DN': ['Laser', 'Black&White', '407340'],
     'Xerox Phaser 3300MFP': ['Laser', 'Color', '108 R 00796'],
-    'Xerox Phaser 3435': ['Laser', 'Black&White', '106 R 01415'],
+    'Xerox Phaser 3435': ['Laser', 'Black&White', '186 R 01415'],
     'Xerox Workcentre 5225': ['Laser', 'Black&White', 'R 01306'],
     }
 
@@ -62,20 +61,26 @@ def subscribe(request):
 
     # if POST happened (button pressed), send email filled by data provided
     if request.method == 'POST':
-        subject = 'ReplaceToner: Room ' + str(viewsRoomNumber)
+        subject = 'ReplaceToner: místnost ' + str(viewsRoomNumber)
         message = """
-            Požadavek na výměnu toneru z aplikace ReplaceToner\n
-            Číslo místnosti: """ + str(viewsRoomNumber) + """\n
-            Název tiskárny: """ + str(viewsPrinterName) + """\n
-            Typ tiskárny: """ + str(viewsPrinterType) + """\n
-            Barva: """ + str(viewsPrinterColor) + """\n
-            Název toneru: """ + str(viewsTonerName) + """\n
-            Barva toneru: """ + str(viewsTonerColor) + """\n
-            Požadavek vygenerován: """ + str(viewsRequestDate)
-
-        from_email = 'replace-toner@yourdomain.com'
-        recepient = ['--enter--your--email--address--here--']
-        send_mail(subject, message, from_email, recepient, fail_silently = False)
-        return render(request, 'printers/success.html', {'viewsRoomNumber': viewsRoomNumber})
+            <html>
+            <p>
+              <strong>Požadavek na výměnu toneru</strong>
+            </p>
+              <ul>
+                <li>Číslo místnosti: <strong>""" + str(viewsRoomNumber) + """</strong></li>
+                <li>Název tiskárny: <strong>""" + str(viewsPrinterName) + """</strong></li>
+                <li>Typ tiskárny: """ + str(viewsPrinterType) + """</li>
+                <li>Barva: """ + str(viewsPrinterColor) + """</li>
+                <li>Název toneru: <strong>""" + str(viewsTonerName) + """</strong></li>
+                <li>Barva toneru: <strong>""" + str(viewsTonerColor) + """</strong></li>
+              </ul>
+              Požadavek vygenerován """ + str(viewsRequestDate) + """ aplikací ReplaceToner.
+            </html>
+        """
+        from_email = 'replace-toner@company.com'
+        recepient = ['--ENTER--YOUR--EMAIL--HERE--']
+        send_mail(subject, message, from_email, recepient, fail_silently=False, html_message=message)
+        return render(request, 'printers/success.html', {'viewsRoomNumber': viewsRoomNumber, 'viewsPrinterName': viewsPrinterName, 'viewsTonerColor': viewsTonerColor })
     else:
         return HttpResponse('Not sent :(')

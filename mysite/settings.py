@@ -123,9 +123,9 @@ STATIC_URL = '/static/'
 # own
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#own home
+# your own smtp settings
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '--YOUR--SENDGRID--APIKEY--'
-EMAIL_HOST_PASSWORD = '--YOUR--PASSWORD--'
+EMAIL_HOST_USER = '--YOUR--APIKEY--FROM--SENDGRID--'
+EMAIL_HOST_PASSWORD = '--YOUR--GENERATED--SENDGRID--PASSWORD--'
 EMAIL_USE_TLS = True
